@@ -1,7 +1,3 @@
-/** second part of project1A.
- * deque implemented by array
- * @author FlyingPig
- */
 public class ArrayDeque<T> {
 
     /** array to save data.*/

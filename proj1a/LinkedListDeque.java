@@ -1,15 +1,15 @@
-public class LinkedListDeque<Item> implements Deque<Item>{
+public class LinkedListDeque<T> {
     /** inner class Node. */
     public class Node {
         /** the item stored on this node. */
-        private Item item;
+        private T item;
         /** the Node before this Node. **/
         private Node pre;
         /** the Node after this Node. **/
         private Node next;
 
         /** constructor for Node. */
-        public Node(Item n, Node ppre, Node nnext) {
+        public Node(T n, Node ppre, Node nnext) {
             item = n;
             pre = ppre;
             next = nnext;
@@ -43,43 +43,43 @@ public class LinkedListDeque<Item> implements Deque<Item>{
         return size;
     }
 
-    public void addFirst(Item item) {
+    public void addFirst(T item) {
         Node newList = new Node(item, sentinel, sentinel.next);
         sentinel.next.pre = newList;
         sentinel.next = newList;
         size++;
     }
 
-    public void addLast(Item item) {
+    public void addLast(T item) {
         Node newList = new Node(item, sentinel.pre, sentinel);
         sentinel.pre.next = newList;
         sentinel.pre = newList;
         size++;
     }
 
-    public Item removeFirst() {
+    public T removeFirst() {
         if (size == 0) {
             return null;
         }
-        Item ret = sentinel.next.item;
+        T ret = sentinel.next.item;
         sentinel.next.next.pre = sentinel;
         sentinel.next = sentinel.next.next;
         size--;
         return ret;
     }
 
-    public Item removeLast() {
+    public T removeLast() {
         if (size == 0) {
             return null;
         }
-        Item ret = sentinel.pre.item;
+        T ret = sentinel.pre.item;
         sentinel.pre.pre.next = sentinel;
         sentinel.pre = sentinel.pre.pre;
         size--;
         return ret;
     }
 
-    public Item get(int index) {
+    public T get(int index) {
         if (index >= size) {
             return null;
         }
@@ -90,7 +90,7 @@ public class LinkedListDeque<Item> implements Deque<Item>{
         return ptr.item;
     }
 
-    private Item getRecursiveHelp(Node start, int index) {
+    private T getRecursiveHelp(Node start, int index) {
         if (index == 0) {
             return start.item;
         } else {
@@ -98,7 +98,7 @@ public class LinkedListDeque<Item> implements Deque<Item>{
         }
     }
 
-    public Item getRecursive(int index) {
+    public T getRecursive(int index) {
         if (index >= size) {
             return null;
         }
